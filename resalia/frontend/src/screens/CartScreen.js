@@ -1,0 +1,74 @@
+import React, { useEffect, useReducer } from 'react';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
+import LoadingBox from '../components/LoadingBox';
+import ErrorMessage from '../components/ErrorMessage';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return { ...state, items: action.payload, loading: false };
+    case 'FETCH_FAIL':
+      return { ...state, error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+
+export default function CartScreen() {
+  const params = useParams();
+  const { slug } = params;
+
+  const [{ loading, error, items }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: '',
+    items: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: 'FETCH_REQUEST' });
+      try {
+        const result = await axios.get(`/api/shops/${slug}/cart`);
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+      }
+    };
+    fetchData();
+  }, [slug]);
+
+  return (
+    <div>
+      <h1>Carta</h1>
+      {loading ? (
+        <LoadingBox />
+      ) : error ? (
+        <ErrorMessage>{error}</ErrorMessage>
+      ) : (
+        <div className="products">
+          {items.map((item) => (
+            <div className="product" key={item.slug}>
+              <Link to={`/product/${item.slug}`}>
+                <img src={item.image} alt={item.name} />
+              </Link>
+              <div className="productInfo">
+                <Link to={`/product/${item.slug}`}>
+                  <p>{item.name}</p>
+                </Link>
+                <p>
+                  <i>{item.category}</i>
+                </p>
+                <p>
+                  <strong>{item.price}€</strong>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

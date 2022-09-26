@@ -23,7 +23,7 @@ main {
   padding: 1rem;
 }
 
-.products {
+.products > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
