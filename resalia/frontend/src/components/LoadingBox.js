@@ -1,9 +1,10 @@
 import React from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function LoadingBox() {
   return (
-    <div className="products">
-      <p>Cargando...</p>
-    </div>
+    <Spinner animation="border" role="status">
+      <span className="visually-hidden">Cargando...</span>
+    </Spinner>
   );
 }

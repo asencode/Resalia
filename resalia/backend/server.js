@@ -1,5 +1,21 @@
 import express from 'express';
 import data from './data.js';
+import expressAsyncHandler from 'express-async-handler';
+import { generateToken } from './utils.js';
+import bcrypt from 'bcryptjs';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('connected to database.');
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 const app = express();
 
@@ -12,22 +28,15 @@ app.get('/api/shops', (req, res) => {
 });
 
 app.get('/api/shops/:slug/cart', async (req, res) => {
-  console.log('entro1');
   const shop = data.shops.find((o) => o.slug === req.params.slug);
-  console.log('entro2');
   if (shop) {
-    console.log('entro3');
     const cart = data.carts.find((o) => o._id === shop.cart).items;
-    console.log('entro4');
     if (cart) {
-      console.log('entro5');
       res.send(cart);
     } else {
-      console.log('entro6');
       res.status(404).send({ message: 'Cart Not Found' });
     }
   } else {
-    console.log('entro7');
     res.status(404).send({ message: 'Shop Not Found' });
   }
 });
@@ -54,6 +63,26 @@ app.get('/api/shops/:slug', async (req, res) => {
     res.status(404).send({ message: 'Shop Not Found' });
   }
 });
+
+app.post(
+  '/api/users/signin',
+  expressAsyncHandler(async (req, res) => {
+    const user = data.users.find((o) => o.email === req.body.email);
+    if (user) {
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          token: generateToken(user),
+        });
+        return;
+      }
+    }
+    res.status(401).send({ message: 'Email o contraseña no válidas.' });
+  })
+);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

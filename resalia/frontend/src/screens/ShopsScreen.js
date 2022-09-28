@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import ErrorMessage from '../components/ErrorMessage';
+import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -39,11 +40,14 @@ export default function ShopsScreen() {
 
   return (
     <div>
-      <h1>Shops</h1>
+      <Helmet>
+        <title>Shops</title>
+      </Helmet>
+      <h1 className="my-3">Shops</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (
-        <ErrorMessage>{error}</ErrorMessage>
+        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="products">
           {shops.map((shop) => (

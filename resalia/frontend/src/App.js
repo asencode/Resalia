@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import AdminDashboardScreen from './screens/AdminDashboardScreen';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
@@ -26,6 +27,7 @@ function App() {
             <Route path="/shops" element={<ShopsScreen />} />
             <Route path="/signin" element={<SigninScreen />} />
             <Route path="/signup" element={<SignupScreen />} />
+            <Route path="/admin/dashboard" element={<AdminDashboardScreen />} />
             <Route path="/" element={<HomeScreen />} />
           </Routes>
         </main>

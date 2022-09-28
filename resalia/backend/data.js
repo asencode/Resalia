@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
   shops: [
     {
@@ -958,6 +960,32 @@ const data = {
           },
         },
       ],
+    },
+  ],
+  users: [
+    {
+      _id: 1,
+      name: 'Angel',
+      email: 'angel@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: true,
+      restaurants: [],
+    },
+    {
+      _id: 2,
+      name: 'Alfonso',
+      email: 'alfonso@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+      shops: [1],
+    },
+    {
+      _id: 3,
+      name: 'Beatriz',
+      email: 'bea@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+      shops: [2],
     },
   ],
 };

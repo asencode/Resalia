@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import ErrorMessage from '../components/ErrorMessage';
+import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -43,11 +44,14 @@ export default function RestaurantScreen() {
 
   return (
     <div>
-      <h1>Información General</h1>
+      <Helmet>
+        <title>Información General</title>
+      </Helmet>
+      <h1 className="my-3">Información General</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (
-        <ErrorMessage>{error}</ErrorMessage>
+        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="products">
           <div className="product" key={shop.slug}>
