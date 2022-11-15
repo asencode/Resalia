@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
 import { Helmet } from 'react-helmet-async';
+import { Resalia } from '../Resalia';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,6 +20,9 @@ const reducer = (state, action) => {
 };
 
 export default function ShopsScreen() {
+  const { state } = useContext(Resalia);
+  const { userInfo } = state;
+
   const [{ shops, error, loading }, dispatch] = useReducer(reducer, {
     shops: [],
     error: '',
@@ -29,21 +33,21 @@ export default function ShopsScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/shops');
+        const result = await axios.get(`/api/shops?userId=${userInfo._id}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
     };
     fetchData();
-  }, []);
+  }, [userInfo._id]);
 
   return (
     <div>
       <Helmet>
-        <title>Shops</title>
+        <title>Resalia - Establecimientos</title>
       </Helmet>
-      <h1 className="my-3">Shops</h1>
+      <h1 className="mt-4 mb-5">Resalia - Establecimientos</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (

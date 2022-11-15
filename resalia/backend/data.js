@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 const data = {
   shops: [
     {
-      _id: 1,
+      //_id: 1,
       name: 'Restaurante El Salvador',
       slug: 'restaurante-el-salvador',
       image: '/images/shops/1.png',
@@ -16,11 +16,9 @@ const data = {
       phone2: '611111111',
       locationLA: 38.961577,
       locationLO: -5.860242,
-      cart: 1,
-      menu: 1,
     },
     {
-      _id: 2,
+      //_id: 2,
       name: 'Bar El Banderín',
       slug: 'bar-el-banderin',
       image: '/images/shops/2.png',
@@ -33,16 +31,15 @@ const data = {
       phone2: '633333333',
       locationLA: 38.961577,
       locationLO: -5.860242,
-      cart: 2,
-      menu: 2,
     },
   ],
   carts: [
     {
-      _id: 1,
+      //_id: 1,
+      shop: 'restaurante-el-salvador',
       items: [
         {
-          _id: 1,
+          //_id: 1,
           name: 'Tortilla Española',
           slug: 'tortilla-espanola',
           category: 'Entrantes',
@@ -71,7 +68,7 @@ const data = {
           },
         },
         {
-          _id: 2,
+          //_id: 2,
           name: 'Surtido de Ibéricos',
           slug: 'surtido-ibericos',
           category: 'Entrantes',
@@ -100,7 +97,7 @@ const data = {
           },
         },
         {
-          _id: 3,
+          //_id: 3,
           name: 'Sopa Castellana',
           slug: 'sopa-castellana',
           category: 'Puchero',
@@ -128,7 +125,7 @@ const data = {
           },
         },
         {
-          _id: 4,
+          //_id: 4,
           name: 'Ensalada César',
           slug: 'ensalada-cesar',
           category: 'Ensaladas',
@@ -156,7 +153,7 @@ const data = {
           },
         },
         {
-          _id: 5,
+          //_id: 5,
           name: 'Entrecot de Ternera',
           slug: 'entrecot-ternera',
           category: 'Carnes',
@@ -184,7 +181,7 @@ const data = {
           },
         },
         {
-          _id: 6,
+          //_id: 6,
           name: 'Pluma Ibérica',
           slug: 'pluma-iberica',
           category: 'Carnes',
@@ -213,7 +210,7 @@ const data = {
           },
         },
         {
-          _id: 7,
+          //_id: 7,
           name: 'Flan de Huevo',
           slug: 'flan-huevo',
           category: 'Postres',
@@ -241,7 +238,7 @@ const data = {
           },
         },
         {
-          _id: 8,
+          //_id: 8,
           name: 'Arroz con Leche',
           slug: 'arroz-leche',
           category: 'Postres',
@@ -271,10 +268,11 @@ const data = {
       ],
     },
     {
-      _id: 2,
+      //_id: 2,
+      shop: 'bar-el-banderin',
       items: [
         {
-          _id: 1,
+          //_id: 1,
           name: 'Tortilla Francesa',
           slug: 'tortilla-francesa',
           category: 'Entrantes',
@@ -302,7 +300,7 @@ const data = {
           },
         },
         {
-          _id: 2,
+          //_id: 2,
           name: 'Surtido de Quesos',
           slug: 'surtido-quesos',
           category: 'Entrantes',
@@ -330,7 +328,7 @@ const data = {
           },
         },
         {
-          _id: 3,
+          //_id: 3,
           name: 'Sopa Gallega',
           slug: 'sopa-gallega',
           category: 'Puchero',
@@ -358,7 +356,7 @@ const data = {
           },
         },
         {
-          _id: 4,
+          //_id: 4,
           name: 'Ensaladilla Rusa',
           slug: 'ensaladilla-rusa',
           category: 'Ensaladas',
@@ -386,7 +384,7 @@ const data = {
           },
         },
         {
-          _id: 5,
+          //_id: 5,
           name: 'Solomillo de Cerdo',
           slug: 'solomillo-cerdo',
           category: 'Carnes',
@@ -414,7 +412,7 @@ const data = {
           },
         },
         {
-          _id: 6,
+          //_id: 6,
           name: 'Secreto Ibérico',
           slug: 'secreto-iberico',
           category: 'Carnes',
@@ -443,7 +441,7 @@ const data = {
           },
         },
         {
-          _id: 7,
+          //_id: 7,
           name: 'Flan de Huevo',
           slug: 'flan-huevo',
           category: 'Postres',
@@ -471,7 +469,7 @@ const data = {
           },
         },
         {
-          _id: 8,
+          //_id: 8,
           name: 'Arroz con Leche',
           slug: 'arroz-leche',
           category: 'Postres',
@@ -503,10 +501,11 @@ const data = {
   ],
   menus: [
     {
-      _id: 1,
+      //_id: 1,
+      shop: 'restaurante-el-salvador',
       items: [
         {
-          _id: 1,
+          //_id: 1,
           name: 'Tortilla',
           slug: 'tortilla',
           category: 'Primeros',
@@ -535,7 +534,7 @@ const data = {
           },
         },
         {
-          _id: 2,
+          //_id: 2,
           name: 'Surtido',
           slug: 'surtido',
           category: 'Primeros',
@@ -563,7 +562,7 @@ const data = {
           },
         },
         {
-          _id: 3,
+          //_id: 3,
           name: 'Sopa',
           slug: 'sopa',
           category: 'Primeros',
@@ -591,7 +590,7 @@ const data = {
           },
         },
         {
-          _id: 4,
+          //_id: 4,
           name: 'Ensalada',
           slug: 'ensalada',
           category: 'Primeros',
@@ -619,7 +618,7 @@ const data = {
           },
         },
         {
-          _id: 5,
+          //_id: 5,
           name: 'Entrecot',
           slug: 'entrecot',
           category: 'Segundos',
@@ -647,7 +646,7 @@ const data = {
           },
         },
         {
-          _id: 6,
+          //_id: 6,
           name: 'Pluma',
           slug: 'pluma',
           category: 'Segundos',
@@ -675,7 +674,7 @@ const data = {
           },
         },
         {
-          _id: 7,
+          //_id: 7,
           name: 'Clara de Huevo',
           slug: 'clara-huevo',
           category: 'Postres',
@@ -703,7 +702,7 @@ const data = {
           },
         },
         {
-          _id: 8,
+          //_id: 8,
           name: 'Vaso de Leche',
           slug: 'vaso-leche',
           category: 'Postres',
@@ -733,10 +732,11 @@ const data = {
       ],
     },
     {
-      _id: 2,
+      //_id: 2,
+      shop: 'bar-el-banderin',
       items: [
         {
-          _id: 1,
+          //_id: 1,
           name: 'Francesa',
           slug: 'francesa',
           category: 'Primeros',
@@ -764,7 +764,7 @@ const data = {
           },
         },
         {
-          _id: 2,
+          //_id: 2,
           name: 'Quesos',
           slug: 'quesos',
           category: 'Primeros',
@@ -792,7 +792,7 @@ const data = {
           },
         },
         {
-          _id: 3,
+          //_id: 3,
           name: 'Pulpo a la Gallega',
           slug: 'pulpo-gallega',
           category: 'Segundos',
@@ -820,7 +820,7 @@ const data = {
           },
         },
         {
-          _id: 4,
+          //_id: 4,
           name: 'Ensaladilla',
           slug: 'ensaladilla',
           category: 'Primeros',
@@ -848,7 +848,7 @@ const data = {
           },
         },
         {
-          _id: 5,
+          //_id: 5,
           name: 'Solomillo',
           slug: 'solomillo',
           category: 'Segundos',
@@ -876,7 +876,7 @@ const data = {
           },
         },
         {
-          _id: 6,
+          //_id: 6,
           name: 'Secreto',
           slug: 'secreto',
           category: 'Segundos',
@@ -904,7 +904,7 @@ const data = {
           },
         },
         {
-          _id: 7,
+          //_id: 7,
           name: 'Flan de Huevo',
           slug: 'flan-huevo',
           category: 'Postres',
@@ -932,7 +932,7 @@ const data = {
           },
         },
         {
-          _id: 8,
+          //_id: 8,
           name: 'Arroz con Leche',
           slug: 'arroz-leche',
           category: 'Postres',
@@ -964,28 +964,28 @@ const data = {
   ],
   users: [
     {
-      _id: 1,
+      //_id: 1,
       name: 'Angel',
       email: 'angel@example.com',
       password: bcrypt.hashSync('123456'),
       isAdmin: true,
-      restaurants: [],
+      surname: 'Castillo',
     },
     {
-      _id: 2,
+      //_id: 2,
       name: 'Alfonso',
       email: 'alfonso@example.com',
       password: bcrypt.hashSync('123456'),
       isAdmin: false,
-      shops: [1],
+      shops: ['restaurante-el-salvador'],
     },
     {
-      _id: 3,
+      //_id: 3,
       name: 'Beatriz',
       email: 'bea@example.com',
       password: bcrypt.hashSync('123456'),
       isAdmin: false,
-      shops: [2],
+      shops: ['bar-el-banderin'],
     },
   ],
 };

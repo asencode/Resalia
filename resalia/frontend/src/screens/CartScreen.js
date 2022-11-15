@@ -46,7 +46,7 @@ export default function CartScreen() {
       <Helmet>
         <title>Carta</title>
       </Helmet>
-      <h1 className="my-3">Carta</h1>
+      <h1 className="mt-4 mb-5">Carta</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (

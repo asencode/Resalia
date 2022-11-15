@@ -47,9 +47,9 @@ export default function SigninScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Sign In</title>
+        <title>Resalia - Iniciar Sesión</title>
       </Helmet>
-      <h1 className="my-3">Sign In</h1>
+      <h1 className="mt-4 mb-5">Iniciar Sesión</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>

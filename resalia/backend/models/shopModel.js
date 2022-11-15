@@ -2,9 +2,13 @@ import mongoose from 'mongoose';
 
 const shopSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
-    image: { type: String, required: true },
+    image: {
+      type: String,
+      required: false,
+      default: 'profile-shop-default.png',
+    },
     address: { type: String, required: true },
     city: { type: String, required: true },
     locality: { type: String, required: true },

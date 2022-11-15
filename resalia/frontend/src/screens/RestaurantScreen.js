@@ -47,7 +47,7 @@ export default function RestaurantScreen() {
       <Helmet>
         <title>Información General</title>
       </Helmet>
-      <h1 className="my-3">Información General</h1>
+      <h1 className="mt-4 mb-5">Información General</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (

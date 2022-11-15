@@ -46,7 +46,7 @@ export default function MenuScreen() {
       <Helmet>
         <title>Menú del día</title>
       </Helmet>
-      <h1 className="my-3">Menú del día</h1>
+      <h1 className="mt-4 mb-5">Menú del día</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (
