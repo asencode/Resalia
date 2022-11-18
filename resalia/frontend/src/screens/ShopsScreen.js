@@ -57,7 +57,12 @@ export default function ShopsScreen() {
           {shops.map((shop) => (
             <div className="product" key={shop.slug}>
               <Link to={`/shops/${shop.slug}`}>
-                <img src={shop.image} alt={shop.name} />
+                <img
+                  src={`http://localhost:5000/images/shops/${
+                    shop.image || 'profile-shop-default.png'
+                  }`}
+                  alt={shop.name}
+                />
               </Link>
               <div className="productInfo">
                 <Link to={`/shops/${shop.slug}`}>

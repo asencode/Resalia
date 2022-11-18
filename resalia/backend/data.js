@@ -6,7 +6,7 @@ const data = {
       //_id: 1,
       name: 'Restaurante El Salvador',
       slug: 'restaurante-el-salvador',
-      image: '/images/shops/1.png',
+      image: 'profile-shop-default.png',
       address: 'C/ Ayala, 10',
       city: 'Don Benito',
       locality: 'Badajoz',
@@ -21,7 +21,7 @@ const data = {
       //_id: 2,
       name: 'Bar El Banderín',
       slug: 'bar-el-banderin',
-      image: '/images/shops/2.png',
+      image: 'profile-shop-default.png',
       address: 'C/ Ramón y Cajal, 24',
       city: 'Don Benito',
       locality: 'Badajoz',
@@ -48,6 +48,7 @@ const data = {
           isAvailable: true,
           description:
             'Deliciosa tortilla española hecha en el momento. Atención: no lleva cebolla.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: false,
@@ -77,6 +78,7 @@ const data = {
           isAvailable: true,
           description:
             'Queso semicurado con surtido de ibéricos de jamón y lomo.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -105,6 +107,7 @@ const data = {
           price: 8.5,
           isAvailable: false,
           description: 'Sopa castellana, ideal para días fríos.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -133,6 +136,7 @@ const data = {
           price: 6,
           isAvailable: true,
           description: 'Ensalada césar para 2 personas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -161,6 +165,7 @@ const data = {
           price: 18,
           isAvailable: true,
           description: 'Delicioso entrecot de ternera cocinado a su gusto.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -190,6 +195,7 @@ const data = {
           isAvailable: true,
           description:
             'Deliciosa pluma ibérica con guarnición de patatas fritas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -218,6 +224,7 @@ const data = {
           price: 5,
           isAvailable: true,
           description: 'Delicioso flan de huevo casero.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -246,6 +253,7 @@ const data = {
           price: 7,
           isAvailable: true,
           description: 'Arroz con leche y un toque de canela.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -280,6 +288,7 @@ const data = {
           price: 6,
           isAvailable: true,
           description: 'Deliciosa tortilla francesa hecha en el momento.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: false,
@@ -308,6 +317,7 @@ const data = {
           price: 9,
           isAvailable: true,
           description: 'Quesos semicurados en surtido.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -336,6 +346,7 @@ const data = {
           price: 8.5,
           isAvailable: false,
           description: 'Sopa gallega, ideal para días fríos.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -364,6 +375,7 @@ const data = {
           price: 6,
           isAvailable: true,
           description: 'Ensaladilla rusa para 2 personas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -392,6 +404,7 @@ const data = {
           price: 18,
           isAvailable: true,
           description: 'Delicioso solomillo de cerdo cocinado a su gusto.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -421,6 +434,7 @@ const data = {
           isAvailable: true,
           description:
             'Delicioso secreto ibérico con guarnición de patatas fritas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -449,6 +463,7 @@ const data = {
           price: 5,
           isAvailable: true,
           description: 'Delicioso flan de huevo casero.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -477,6 +492,7 @@ const data = {
           price: 7,
           isAvailable: true,
           description: 'Arroz con leche y un toque de canela.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -514,6 +530,7 @@ const data = {
           isAvailable: true,
           description:
             'Deliciosa tortilla hecha en el momento. Atención: no lleva cebolla.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: false,
@@ -542,6 +559,7 @@ const data = {
           price: 9,
           isAvailable: true,
           description: 'Surtido de ibéricos.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -570,6 +588,7 @@ const data = {
           price: 8.5,
           isAvailable: false,
           description: 'Sopa, ideal para días fríos.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -598,6 +617,7 @@ const data = {
           price: 6,
           isAvailable: true,
           description: 'Ensalada para 2 personas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -626,6 +646,7 @@ const data = {
           price: 18,
           isAvailable: true,
           description: 'Delicioso entrecot cocinado a su gusto.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -654,6 +675,7 @@ const data = {
           price: 16,
           isAvailable: true,
           description: 'Deliciosa pluma con guarnición de patatas fritas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -682,6 +704,7 @@ const data = {
           price: 5,
           isAvailable: true,
           description: 'Deliciosa clara de huevo casera.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -710,6 +733,7 @@ const data = {
           price: 7,
           isAvailable: true,
           description: 'Vaso con leche y un toque de canela.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -744,6 +768,7 @@ const data = {
           price: 6,
           isAvailable: true,
           description: 'Deliciosa tortilla hecha en el momento.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: false,
@@ -772,6 +797,7 @@ const data = {
           price: 9,
           isAvailable: true,
           description: 'Quesos en surtido.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -800,6 +826,7 @@ const data = {
           price: 8.5,
           isAvailable: false,
           description: 'Pulpo a la gallega, ideal para días fríos.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -828,6 +855,7 @@ const data = {
           price: 6,
           isAvailable: true,
           description: 'Ensaladilla para 2 personas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -856,6 +884,7 @@ const data = {
           price: 18,
           isAvailable: true,
           description: 'Delicioso solomillo cocinado a su gusto.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -884,6 +913,7 @@ const data = {
           price: 16,
           isAvailable: true,
           description: 'Delicioso secreto con guarnición de patatas fritas.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -912,6 +942,7 @@ const data = {
           price: 5,
           isAvailable: true,
           description: 'Delicioso flan de huevo casero.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -940,6 +971,7 @@ const data = {
           price: 7,
           isAvailable: true,
           description: 'Arroz con leche y un toque de canela.',
+          views: 0,
           alergenos: {
             isGluten: true,
             isMarisco: true,

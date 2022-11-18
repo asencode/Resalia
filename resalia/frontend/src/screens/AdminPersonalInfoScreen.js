@@ -9,6 +9,8 @@ import axios from 'axios';
 import { getError } from '../utils';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -113,145 +115,190 @@ export default function AdminPersonalInfoScreen() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <Form onSubmit={submitHandler}>
-          <Form.Group className="mb-4" controlId="name">
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              value={user.name}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'name',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="surname">
-            <Form.Label>Apellidos</Form.Label>
-            <Form.Control
-              type="text"
-              value={surname}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'surname',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" value={email} required disabled />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="phone1">
-            <Form.Label>Teléfono de Contacto</Form.Label>
-            <Form.Control
-              type="phone"
-              value={phone1}
-              required
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'phone1',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="phone2">
-            <Form.Label>Teléfono Adicional</Form.Label>
-            <Form.Control
-              type="phone"
-              value={phone2}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'phone2',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="address1">
-            <Form.Label>Dirección (nombre de la vía y número)</Form.Label>
-            <Form.Control
-              type="text"
-              value={address1}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'address1',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="address2">
-            <Form.Label>Dirección 2 (piso y puerta si procede)</Form.Label>
-            <Form.Control
-              type="text"
-              value={address2}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'address2',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="city">
-            <Form.Label>Municipio</Form.Label>
-            <Form.Control
-              type="text"
-              value={city}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'city',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="province">
-            <Form.Label>Provincia</Form.Label>
-            <Form.Control
-              type="text"
-              value={province}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'province',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="postcode">
-            <Form.Label>Código Postal</Form.Label>
-            <Form.Control
-              type="text"
-              value={postcode}
-              onChange={(e) => {
-                dispatch({
-                  type: 'FIELD',
-                  fieldName: 'postcode',
-                  payload: e.currentTarget.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <div className="mb-3">
-            <Button variant="primary" type="submit">
-              Guardar Cambios
-            </Button>
-          </div>
-        </Form>
+        <Row className="mt-4">
+          <Col lg={{ span: 8, offset: 2 }}>
+            <Form onSubmit={submitHandler}>
+              <Row>
+                <Form.Group className="mb-4" controlId="name" as={Col} md={6}>
+                  <Form.Label>Nombre</Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    value={user.name}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'name',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-4"
+                  controlId="surname"
+                  as={Col}
+                  md={6}
+                >
+                  <Form.Label>Apellidos</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={surname}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'surname',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+              </Row>
+              <Row>
+                <Form.Group className="mb-4" controlId="email" as={Col}>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" value={email} required disabled />
+                </Form.Group>
+              </Row>
+              <Row>
+                <Form.Group className="mb-4" controlId="phone1" as={Col} md={6}>
+                  <Form.Label>Teléfono de Contacto</Form.Label>
+                  <Form.Control
+                    type="phone"
+                    value={phone1}
+                    required
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'phone1',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-4" controlId="phone2" as={Col} md={6}>
+                  <Form.Label>Teléfono Adicional</Form.Label>
+                  <Form.Control
+                    type="phone"
+                    value={phone2}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'phone2',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+              </Row>
+              <Row>
+                <Form.Group
+                  className="mb-4"
+                  controlId="address1"
+                  as={Col}
+                  md={6}
+                >
+                  <Form.Label>Dirección (nombre de la vía y número)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address1}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'address1',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-4"
+                  controlId="address2"
+                  as={Col}
+                  md={6}
+                >
+                  <Form.Label>
+                    Dirección 2 (piso y puerta si procede)
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address2}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'address2',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+              </Row>
+              <Row>
+                <Form.Group className="mb-4" controlId="city" as={Col} md={6}>
+                  <Form.Label>Municipio</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={city}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'city',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-4"
+                  controlId="province"
+                  as={Col}
+                  md={6}
+                >
+                  <Form.Label>Provincia</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={province}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'province',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+              </Row>
+              <Row>
+                <Form.Group
+                  className="mb-4"
+                  controlId="postcode"
+                  as={Col}
+                  md={6}
+                >
+                  <Form.Label>Código Postal</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={postcode}
+                    onChange={(e) => {
+                      dispatch({
+                        type: 'FIELD',
+                        fieldName: 'postcode',
+                        payload: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </Form.Group>
+              </Row>
+              <Row className="mb-4">
+                <Col md={12} className="d-grid">
+                  <Button variant="dark" type="submit">
+                    Guardar Cambios
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
       )}
     </div>
   );

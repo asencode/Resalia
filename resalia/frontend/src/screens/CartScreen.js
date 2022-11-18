@@ -55,11 +55,11 @@ export default function CartScreen() {
         <div className="products">
           {items.map((item) => (
             <div className="product" key={item.slug}>
-              <Link to={`/product/${item.slug}`}>
+              <Link to={`/shops/${slug}/cart/${item.slug}`}>
                 <img src={item.image} alt={item.name} />
               </Link>
               <div className="productInfo">
-                <Link to={`/product/${item.slug}`}>
+                <Link to={`/shops/${slug}/cart/${item.slug}`}>
                   <p>{item.name}</p>
                 </Link>
                 <p>

@@ -10,6 +10,7 @@ const menuItemSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     isAvailable: { type: Boolean, default: true, required: true },
     description: { type: String, required: true },
+    views: { type: Number, required: true, default: 0 },
     alergenos: { type: [Allergen.Schema], required: true },
   },
   {

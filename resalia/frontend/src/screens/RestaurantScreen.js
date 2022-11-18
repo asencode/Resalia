@@ -55,7 +55,12 @@ export default function RestaurantScreen() {
       ) : (
         <div className="products">
           <div className="product" key={shop.slug}>
-            <img src={shop.image} alt={shop.name} />
+            <img
+              src={`http://localhost:5000/images/shops/${
+                shop.image || 'profile-shop-default.png'
+              }`}
+              alt={shop.name}
+            />
             <div className="productInfo">
               <p>{shop.name}</p>
               <p>{shop.address}</p>

@@ -5,6 +5,8 @@ import shopRouter from './routes/shopRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import seedRouter from './routes/seedRouter.js';
 import cors from 'cors';
+import cartRouter from './routes/cartRouter.js';
+import menuRouter from './routes/menuRouter.js';
 
 dotenv.config();
 
@@ -25,6 +27,8 @@ app.use(cors());
 
 app.use('/api/shops', shopRouter);
 app.use('/api/users', userRouter);
+app.use('/api/carts', cartRouter);
+app.use('/api/menus', menuRouter);
 app.use('/api/seed', seedRouter);
 
 app.use('/images', express.static('public/images'));

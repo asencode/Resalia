@@ -1,13 +1,90 @@
-import React from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import { Resalia } from '../Resalia';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { getError } from '../utils';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FIELD':
+      return {
+        ...state,
+        shop: { ...state.shop, [action.fieldName]: action.payload },
+      };
+    default:
+      return state;
+  }
+};
 
 export default function AdminCreateShopScreen() {
+  const navigate = useNavigate();
+  const { state } = useContext(Resalia);
+  const { userInfo } = state;
+  const [shopImage, setShopImage] = useState({});
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/signin');
+    }
+  }, [userInfo, navigate]);
+
+  const [{ shop }, dispatch] = useReducer(reducer, {
+    shop: {},
+  });
+
+  const {
+    name,
+    image,
+    address,
+    city,
+    locality,
+    postcode,
+    email,
+    phone1,
+    phone2,
+  } = shop;
+
+  const loadFileHandler = (e) => {
+    const formImage = document.getElementById('output');
+    formImage.src = URL.createObjectURL(e.target.files[0]);
+    setShopImage(e.target.files[0]);
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append('image', shopImage);
+      formData.append('name', name);
+      formData.append('address', address);
+      formData.append('city', city);
+      formData.append('locality', locality);
+      formData.append('postcode', postcode);
+      formData.append('email', email);
+      formData.append('phone1', phone1);
+      formData.append('phone2', phone2 || '');
+
+      await axios
+        .post('/api/shops/insert', formData, {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        })
+        .then((res) => {
+          toast.success('¡Establecimiento creado!');
+          navigate('/admin/shops');
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } catch (error) {
+      toast.error(getError(error.message));
+    }
   };
 
   return (
@@ -48,7 +125,7 @@ export default function AdminCreateShopScreen() {
                 <Form.Control
                   type="text"
                   required
-                  value={name}
+                  value={name || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -65,7 +142,8 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Dirección</Form.Label>
                 <Form.Control
                   type="text"
-                  value={address}
+                  required
+                  value={address || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -81,7 +159,8 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Municipio</Form.Label>
                 <Form.Control
                   type="text"
-                  value={city}
+                  required
+                  value={city || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -95,7 +174,8 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Provincia</Form.Label>
                 <Form.Control
                   type="text"
-                  value={locality}
+                  required
+                  value={locality || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -111,7 +191,8 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Código Postal</Form.Label>
                 <Form.Control
                   type="text"
-                  value={postcode}
+                  required
+                  value={postcode || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -125,7 +206,8 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Mail Contacto</Form.Label>
                 <Form.Control
                   type="email"
-                  value={email}
+                  required
+                  value={email || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -141,7 +223,8 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Teléfono Contacto</Form.Label>
                 <Form.Control
                   type="text"
-                  value={phone1}
+                  required
+                  value={phone1 || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -155,7 +238,7 @@ export default function AdminCreateShopScreen() {
                 <Form.Label>Teléfono Adicional</Form.Label>
                 <Form.Control
                   type="text"
-                  value={phone2}
+                  value={phone2 || ''}
                   onChange={(e) => {
                     dispatch({
                       type: 'FIELD',
@@ -169,7 +252,7 @@ export default function AdminCreateShopScreen() {
             <Row className="mb-4">
               <Col md={12} className="d-grid">
                 <Button variant="dark" type="submit">
-                  Guardar Cambios
+                  Crear Establecimiento
                 </Button>
               </Col>
             </Row>

@@ -31,3 +31,14 @@ export const isAuth = (req, res, next) => {
     res.status(401).send({ message: 'No Token' });
   }
 };
+
+export const slugify = (slug) => {
+  return slug
+    .trim()
+    .replace(/-/g, '')
+    .replace(/\s|_|\(|\)/g, '-')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^\w\s-]/g, '')
+    .toLowerCase();
+};

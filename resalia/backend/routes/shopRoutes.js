@@ -4,9 +4,9 @@ import Cart from '../models/cartModel.js';
 import Menu from '../models/menuModel.js';
 import User from '../models/userModel.js';
 import expressAsyncHandler from 'express-async-handler';
-import { isAuth } from '../utils.js';
+import { isAuth, slugify } from '../utils.js';
 import multer from 'multer';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 
 const shopRouter = express.Router();
@@ -104,7 +104,7 @@ const storage = multer.diskStorage({
     cb(null, process.env.IMAGES_DIR + 'shops/');
   },
   filename: (req, file, cb) => {
-    const fileName = v4() + path.extname(file.originalname);
+    const fileName = uuidv4() + path.extname(file.originalname);
     cb(null, fileName);
   },
 });
@@ -138,8 +138,6 @@ shopRouter.put(
   expressAsyncHandler(async (req, res) => {
     const shop = await Shop.findOne({ slug: req.body.slug });
 
-    console.log('filename', res.req.file.filename);
-
     if (shop) {
       shop.image = res.req.file.filename;
 
@@ -151,6 +149,63 @@ shopRouter.put(
       res.status(500).send({
         message: `No se pudo actualizar la imagen. ${err}`,
       });
+    }
+  })
+);
+
+shopRouter.post(
+  '/insert',
+  isAuth,
+  upload.single('image'),
+  expressAsyncHandler(async (req, res) => {
+    try {
+      let slug = slugify(req.body.name);
+      let iteration = 1;
+      let notfound = false;
+
+      let existingShop = await Shop.findOne({ slug: slug });
+
+      while (existingShop) {
+        existingShop = await Shop.findOne({ slug: slug + '_' + iteration });
+
+        if (existingShop) {
+          if (iteration >= 20) {
+            notfound = true;
+            break;
+          } else {
+            iteration++;
+          }
+        } else {
+          slug = slug + '_' + iteration;
+        }
+      }
+
+      if (notfound) {
+        res
+          .status(501)
+          .send({ message: 'Error al generar slug del establecimiento.' });
+      } else {
+        const newShop = new Shop({
+          slug: slug,
+          image: res.req.file
+            ? res.req.file.filename
+            : process.env.DEFAULT_PROFILE_IMAGE,
+          name: req.body.name,
+          address: req.body.address,
+          city: req.body.city,
+          locality: req.body.locality,
+          postcode: req.body.postcode,
+          email: req.body.email,
+          phone1: req.body.phone1,
+          phone2: req.body.phone2,
+        });
+        const shop = await newShop.save();
+
+        res.status(200).send({ message: 'Nuevo establecimiento creado' });
+      }
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).send({ message: error.message });
     }
   })
 );

@@ -181,6 +181,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Dirección</Form.Label>
                   <Form.Control
                     type="text"
+                    required
                     value={address}
                     onChange={(e) => {
                       dispatch({
@@ -197,6 +198,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Municipio</Form.Label>
                   <Form.Control
                     type="text"
+                    required
                     value={city}
                     onChange={(e) => {
                       dispatch({
@@ -216,6 +218,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Provincia</Form.Label>
                   <Form.Control
                     type="text"
+                    required
                     value={locality}
                     onChange={(e) => {
                       dispatch({
@@ -237,6 +240,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Código Postal</Form.Label>
                   <Form.Control
                     type="text"
+                    required
                     value={postcode}
                     onChange={(e) => {
                       dispatch({
@@ -251,6 +255,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Mail Contacto</Form.Label>
                   <Form.Control
                     type="email"
+                    required
                     value={email}
                     onChange={(e) => {
                       dispatch({
@@ -267,6 +272,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Teléfono Contacto</Form.Label>
                   <Form.Control
                     type="text"
+                    required
                     value={phone1}
                     onChange={(e) => {
                       dispatch({
