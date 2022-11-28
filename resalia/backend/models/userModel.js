@@ -6,6 +6,12 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
+    plan: {
+      type: String,
+      enum: ['basic', 'advanced', 'premium'],
+      required: false,
+      default: 'basic',
+    },
     shops: { type: [String], required: false },
     surname: { type: String, required: false },
     address1: { type: String, required: false },
@@ -15,6 +21,7 @@ const userSchema = new mongoose.Schema(
     postcode: { type: String, required: false },
     phone1: { type: String, required: false },
     phone2: { type: String, required: false },
+    language: { type: String, required: false, default: 'es' },
   },
   {
     timestamp: true,

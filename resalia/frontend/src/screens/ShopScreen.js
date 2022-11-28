@@ -10,7 +10,13 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, shop: action.payload, loading: false };
+      return {
+        ...state,
+        shop: action.payload.shop,
+        carts: action.payload.carts,
+        menus: action.payload.menus,
+        loading: false,
+      };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -18,16 +24,21 @@ const reducer = (state, action) => {
   }
 };
 
-export default function RestaurantScreen() {
+export default function ShopScreen() {
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
-  const [{ loading, error, shop }, dispatch] = useReducer(reducer, {
-    shop: [],
-    loading: true,
-    error: '',
-  });
+  const [{ loading, error, shop, carts, menus }, dispatch] = useReducer(
+    reducer,
+    {
+      shop: [],
+      carts: [],
+      menus: [],
+      loading: true,
+      error: '',
+    }
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +51,17 @@ export default function RestaurantScreen() {
       }
     };
     fetchData();
+  }, [slug]);
+
+  useEffect(() => {
+    if (slug) {
+      const addVisit = async () => {
+        await axios.put('/api/shops/updateShopViews', { slug }).catch((err) => {
+          console.log(err.message);
+        });
+      };
+      addVisit();
+    }
   }, [slug]);
 
   return (
@@ -72,12 +94,26 @@ export default function RestaurantScreen() {
             </div>
           </div>
           <div>
-            <button onClick={() => navigate(`/shops/${shop.slug}/menu`)}>
-              Ver Menú del Día
-            </button>
-            <button onClick={() => navigate(`/shops/${shop.slug}/cart`)}>
-              Ver Carta
-            </button>
+            {menus.map((menu) => (
+              <button
+                key={menu.slug}
+                onClick={() =>
+                  navigate(`/shops/${shop.slug}/menus/${menu.slug}`)
+                }
+              >
+                {menu.name}
+              </button>
+            ))}
+            {carts.map((cart) => (
+              <button
+                key={cart.slug}
+                onClick={() =>
+                  navigate(`/shops/${shop.slug}/carts/${cart.slug}`)
+                }
+              >
+                {cart.name}
+              </button>
+            ))}
           </div>
         </div>
       )}

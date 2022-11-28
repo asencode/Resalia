@@ -33,7 +33,7 @@ export default function AdminShopsScreen() {
     if (!userInfo) {
       navigate('/signin');
     }
-  });
+  }, [userInfo, navigate]);
 
   const [{ shops, error, loading }, dispatch] = useReducer(reducer, {
     shops: [],

@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
-import Allergen from './allergenModel.js';
+import { allergenSchema } from './allergenModel.js';
+import { traceSchema } from './traceModel.js';
+import { formatSchema } from './formatModel.js';
 
-const cartItemSchema = new mongoose.Schema(
+export const cartItemSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
@@ -9,9 +11,16 @@ const cartItemSchema = new mongoose.Schema(
     image: { type: String, required: true },
     price: { type: Number, required: true },
     isAvailable: { type: Boolean, default: true, required: true },
+    aditionalInfo: { type: String, required: false },
     description: { type: String, required: true },
     views: { type: Number, required: true, default: 0 },
-    alergenos: { type: [Allergen.Schema], required: true },
+    isVegetariano: { type: Boolean, default: false, required: true },
+    isVegano: { type: Boolean, default: false, required: true },
+    isFeatured: { type: Boolean, default: false, required: true },
+    isVisible: { type: Boolean, default: true, required: true },
+    formats: [formatSchema],
+    alergenos: allergenSchema,
+    trazas: traceSchema,
   },
   {
     timestamp: true,

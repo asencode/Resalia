@@ -18,9 +18,9 @@ shopRouter.get('/', async (req, res) => {
   if (userId) {
     const user = await User.findById(userId);
     if (user) {
-      var shops;
+      let shops;
       if (user.isAdmin) {
-        shops = await Shop.find();
+        shops = await Shop.find().sort({ name: 1 });
       } else {
         shops = await Shop.find({ slug: user.shops }).sort({ name: 1 });
       }
@@ -38,28 +38,104 @@ shopRouter.get('/', async (req, res) => {
   }
 });
 
-shopRouter.get('/:slug/cart', async (req, res) => {
-  const cart = await Cart.findOne({ shop: req.params.slug });
-  if (cart.items) {
-    res.send(cart.items);
+shopRouter.get(
+  '/stats/:userId',
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.userId);
+
+    if (user) {
+      let shops;
+
+      if (user.isAdmin) {
+        shops = await Shop.find().sort({ name: 1 });
+      } else {
+        shops = await Shop.find({ slug: user.shops }).sort({ name: 1 });
+      }
+
+      const carts = await Cart.find({ shop: shops.map((s) => s.slug) });
+      const menus = await Menu.find({ shop: shops.map((s) => s.slug) });
+
+      res.send({ shops: shops, carts: carts, menus: menus });
+      return;
+    } else {
+      res.status(404).send({ message: 'Usuario no encontrado.' });
+      return;
+    }
+  })
+);
+
+shopRouter.put(
+  '/updateShopViews',
+  expressAsyncHandler(async (req, res) => {
+    try {
+      Shop.updateOne(
+        { slug: req.body.slug },
+        {
+          $inc: {
+            views: 1,
+          },
+        },
+        function (err) {
+          if (err) {
+            console.log(err.message);
+            res.status(500).send({
+              message: 'Error al actualizar las visitas del establecimiento.',
+            });
+            return;
+          } else {
+            res.status(200).send({
+              message: 'Visitas del establecimiento actualizadas con éxito',
+            });
+            return;
+          }
+        }
+      );
+    } catch (error) {
+      res.status(500).send({
+        message: 'Error al actualizar las visitas del establecimiento.',
+      });
+      return;
+    }
+  })
+);
+
+shopRouter.get('/:shop/carts/:slug', async (req, res) => {
+  const cart = await Cart.findOne({
+    shop: req.params.shop,
+    slug: req.params.slug,
+  });
+  if (cart) {
+    res.send(cart);
+    return;
   } else {
     res.status(404).send({ message: 'Cart Not Found' });
+    return;
   }
 });
 
-shopRouter.get('/:slug/menu', async (req, res) => {
-  const menu = await Menu.findOne({ shop: req.params.slug });
-  if (menu.items) {
-    res.send(menu.items);
+shopRouter.get('/:shop/menus/:slug', async (req, res) => {
+  const menu = await Menu.findOne({
+    shop: req.params.shop,
+    slug: req.params.slug,
+  });
+
+  if (menu) {
+    res.send(menu);
+    return;
   } else {
     res.status(404).send({ message: 'Menu Not Found' });
+    return;
   }
 });
 
 shopRouter.get('/:slug', async (req, res) => {
   const shop = await Shop.findOne({ slug: req.params.slug });
   if (shop) {
-    res.send(shop);
+    //TODO: comprobar que si una tienda no tiene alguno de estos datos la app no pete
+    //(p.ej. que esta shop solo tenga 1 carta y 0 menus).
+    const carts = await Cart.find({ shop: req.params.slug });
+    const menus = await Menu.find({ shop: req.params.slug });
+    res.send({ shop: shop, carts: carts, menus: menus });
   } else {
     res.status(404).send({ message: 'Shop Not Found' });
   }
@@ -200,6 +276,9 @@ shopRouter.post(
           phone2: req.body.phone2,
         });
         const shop = await newShop.save();
+
+        //TODO: Si el user isAdmin es false, hay que asignarle este nuevo slug a su
+        //array de tiendas user.shops para que pueda verla.
 
         res.status(200).send({ message: 'Nuevo establecimiento creado' });
       }

@@ -1,6 +1,6 @@
 import express from 'express';
-import Cart from '../models/cartModel.js';
 import expressAsyncHandler from 'express-async-handler';
+import Cart from '../models/cartModel.js';
 
 const cartRouter = express.Router();
 
@@ -9,7 +9,11 @@ cartRouter.put(
   expressAsyncHandler(async (req, res) => {
     try {
       Cart.updateOne(
-        { slug: req.body.slug, 'items.slug': req.body.itemslug },
+        {
+          shop: req.body.shop,
+          slug: req.body.cart,
+          'items.slug': req.body.slug,
+        },
         {
           $inc: {
             'items.$.views': 1,
@@ -31,6 +35,7 @@ cartRouter.put(
         }
       );
     } catch (error) {
+      console.log(error.message);
       res
         .status(500)
         .send({ message: 'Error al actualizar las visitas del plato.' });

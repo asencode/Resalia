@@ -22,7 +22,7 @@ export default function AdminDashboardScreen() {
     if (!userInfo) {
       navigate('/signin');
     }
-  });
+  }, [userInfo, navigate]);
 
   const logoutHandler = () => {
     ctxDispatch({ type: 'USER_LOGOUT' });

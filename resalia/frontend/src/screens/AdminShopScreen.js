@@ -22,7 +22,7 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, shop: action.payload, loading: false };
+      return { ...state, shop: action.payload.shop, loading: false };
     case 'FETCH_FAIL':
       return { ...state, error: action.payload, loading: false };
     default:
@@ -164,7 +164,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={name}
+                    value={name || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -182,7 +182,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={address}
+                    value={address || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -199,7 +199,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={city}
+                    value={city || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -219,7 +219,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={locality}
+                    value={locality || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -241,7 +241,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={postcode}
+                    value={postcode || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -256,7 +256,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="email"
                     required
-                    value={email}
+                    value={email || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -273,7 +273,7 @@ export default function AdminShopScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={phone1}
+                    value={phone1 || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -287,7 +287,7 @@ export default function AdminShopScreen() {
                   <Form.Label>Teléfono Adicional</Form.Label>
                   <Form.Control
                     type="text"
-                    value={phone2}
+                    value={phone2 || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',

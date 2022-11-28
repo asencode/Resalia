@@ -11,8 +11,7 @@ import AdminShopScreen from './screens/AdminShopScreen';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
-import ProductScreen from './screens/ProductScreen';
-import RestaurantScreen from './screens/RestaurantScreen';
+import ShopScreen from './screens/ShopScreen';
 import ShopsScreen from './screens/ShopsScreen';
 import SigninScreen from './screens/SigninScreen';
 import SignupScreen from './screens/SignupScreen';
@@ -26,6 +25,8 @@ import { useContext } from 'react';
 import { Resalia } from './Resalia';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CartItemScreen from './screens/CartItemScreen';
+import MenuItemScreen from './screens/MenuItemScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Resalia);
@@ -82,12 +83,16 @@ function App() {
           <Container className="mt-3">
             <Routes>
               <Route
-                path="/shops/:slug/cart/:itemslug"
-                element={<ProductScreen />}
+                path="/shops/:shop/cart/:cart/:slug"
+                element={<CartItemScreen />}
               />
-              <Route path="/shops/:slug/menu" element={<MenuScreen />} />
-              <Route path="/shops/:slug/cart" element={<CartScreen />} />
-              <Route path="/shops/:slug" element={<RestaurantScreen />} />
+              <Route
+                path="/shops/:shop/menu/:menu/:slug"
+                element={<MenuItemScreen />}
+              />
+              <Route path="/shops/:shop/menus/:slug" element={<MenuScreen />} />
+              <Route path="/shops/:shop/carts/:slug" element={<CartScreen />} />
+              <Route path="/shops/:slug" element={<ShopScreen />} />
               <Route path="/shops" element={<ShopsScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />

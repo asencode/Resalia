@@ -10,7 +10,7 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, items: action.payload, loading: false };
+      return { ...state, cart: action.payload, loading: false };
     case 'FETCH_FAIL':
       return { ...state, error: action.payload, loading: false };
     default:
@@ -20,26 +20,26 @@ const reducer = (state, action) => {
 
 export default function CartScreen() {
   const params = useParams();
-  const { slug } = params;
+  const { shop, slug } = params;
 
-  const [{ loading, error, items }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, cart }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
-    items: [],
+    cart: {},
   });
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get(`/api/shops/${slug}/cart`);
+        const result = await axios.get(`/api/shops/${shop}/carts/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
     };
     fetchData();
-  }, [slug]);
+  }, [shop, slug]);
 
   return (
     <div>
@@ -53,13 +53,14 @@ export default function CartScreen() {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="products">
-          {items.map((item) => (
+          <h4>{cart.name}</h4>
+          {cart.items.map((item) => (
             <div className="product" key={item.slug}>
-              <Link to={`/shops/${slug}/cart/${item.slug}`}>
+              <Link to={`/shops/${shop}/cart/${cart.slug}/${item.slug}`}>
                 <img src={item.image} alt={item.name} />
               </Link>
               <div className="productInfo">
-                <Link to={`/shops/${slug}/cart/${item.slug}`}>
+                <Link to={`/shops/${shop}/cart/${cart.slug}/${item.slug}`}>
                   <p>{item.name}</p>
                 </Link>
                 <p>

@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
+import { menuItemSchema } from './menuItemModel.js';
 
-const menuSchema = new mongoose.Schema(
+export const menuSchema = new mongoose.Schema(
   {
+    name: { type: String, required: true },
+    slug: { type: String, required: true },
     shop: { type: String, required: true },
-    items: { type: Array, default: [], required: true },
+    items: [menuItemSchema],
   },
   {
     timestamp: true,

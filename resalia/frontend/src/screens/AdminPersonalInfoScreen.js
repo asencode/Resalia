@@ -124,7 +124,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Control
                     type="text"
                     required
-                    value={user.name}
+                    value={user.name || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -143,7 +143,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Apellidos</Form.Label>
                   <Form.Control
                     type="text"
-                    value={surname}
+                    value={surname || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -165,7 +165,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Teléfono de Contacto</Form.Label>
                   <Form.Control
                     type="phone"
-                    value={phone1}
+                    value={phone1 || ''}
                     required
                     onChange={(e) => {
                       dispatch({
@@ -180,7 +180,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Teléfono Adicional</Form.Label>
                   <Form.Control
                     type="phone"
-                    value={phone2}
+                    value={phone2 || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -201,7 +201,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Dirección (nombre de la vía y número)</Form.Label>
                   <Form.Control
                     type="text"
-                    value={address1}
+                    value={address1 || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -222,7 +222,7 @@ export default function AdminPersonalInfoScreen() {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    value={address2}
+                    value={address2 || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -238,7 +238,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Municipio</Form.Label>
                   <Form.Control
                     type="text"
-                    value={city}
+                    value={city || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -257,7 +257,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Provincia</Form.Label>
                   <Form.Control
                     type="text"
-                    value={province}
+                    value={province || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',
@@ -278,7 +278,7 @@ export default function AdminPersonalInfoScreen() {
                   <Form.Label>Código Postal</Form.Label>
                   <Form.Control
                     type="text"
-                    value={postcode}
+                    value={postcode || ''}
                     onChange={(e) => {
                       dispatch({
                         type: 'FIELD',

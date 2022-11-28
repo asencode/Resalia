@@ -2,22 +2,22 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ProductScreen() {
+export default function MenuItemScreen() {
   const params = useParams();
-  const { slug, itemslug } = params;
+  const { shop, menu, slug } = params;
 
   useEffect(() => {
-    if (slug) {
+    if (shop) {
       const addVisit = async () => {
         await axios
-          .put('/api/carts/updateCartViews', { slug, itemslug })
+          .put('/api/menus/updateMenuViews', { shop, menu, slug })
           .catch((err) => {
             console.log(err.message);
           });
       };
       addVisit();
     }
-  });
+  }, [shop, menu, slug]);
 
   return <div>Producto: {slug}</div>;
 }

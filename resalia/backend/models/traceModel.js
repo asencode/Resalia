@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export const allergenSchema = new mongoose.Schema(
+export const traceSchema = new mongoose.Schema(
   {
     isGluten: { type: Boolean, default: false, required: true },
     isMarisco: { type: Boolean, default: false, required: true },
@@ -22,5 +22,5 @@ export const allergenSchema = new mongoose.Schema(
   }
 );
 
-const Allergen = new mongoose.model('Allergen', allergenSchema);
-export default Allergen;
+const Trace = new mongoose.model('Trace', traceSchema);
+export default Trace;

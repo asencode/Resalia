@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
+import { cartItemSchema } from './cartItemModel.js';
 
-const cartSchema = new mongoose.Schema(
+export const cartSchema = new mongoose.Schema(
   {
+    name: { type: String, required: true },
+    slug: { type: String, required: true },
     shop: { type: String, required: true },
-    items: { type: Array, default: [], required: true },
+    items: [cartItemSchema],
   },
   {
     timestamp: true,
