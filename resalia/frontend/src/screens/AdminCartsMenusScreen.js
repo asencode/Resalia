@@ -68,7 +68,7 @@ export default function AdminCartsMenusScreen() {
           {shops.map((shop) => (
             <Row key={shop.slug}>
               <Col className="dashboard-element mb-4">
-                <Link to={`/admin/carts/${shop.slug}`}>
+                <Link to={`/admin/carts-menus/${shop.slug}`}>
                   <Card className="h-100">
                     <Card.Body className="text-center d-flex flex-column align-items-center">
                       <h5 className="mt-3 mb-3">{shop.name}</h5>

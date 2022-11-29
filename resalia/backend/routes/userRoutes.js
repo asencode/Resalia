@@ -18,6 +18,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          plan: user.plan,
           token: generateToken(user),
         });
         return;

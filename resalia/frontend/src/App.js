@@ -15,6 +15,11 @@ import ShopScreen from './screens/ShopScreen';
 import ShopsScreen from './screens/ShopsScreen';
 import SigninScreen from './screens/SigninScreen';
 import SignupScreen from './screens/SignupScreen';
+import CartItemScreen from './screens/CartItemScreen';
+import MenuItemScreen from './screens/MenuItemScreen';
+import AdminShopCartsMenusScreen from './screens/AdminShopCartsMenusScreen';
+import AdminCartScreen from './screens/AdminCartScreen';
+import AdminMenuScreen from './screens/AdminMenuScreen';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -25,8 +30,6 @@ import { useContext } from 'react';
 import { Resalia } from './Resalia';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CartItemScreen from './screens/CartItemScreen';
-import MenuItemScreen from './screens/MenuItemScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Resalia);
@@ -113,6 +116,18 @@ function App() {
               <Route
                 path="/admin/carts-menus"
                 element={<AdminCartsMenusScreen />}
+              />
+              <Route
+                path="/admin/carts-menus/:shop"
+                element={<AdminShopCartsMenusScreen />}
+              />
+              <Route
+                path="/admin/carts-menus/:shop/cart/:slug"
+                element={<AdminCartScreen />}
+              />
+              <Route
+                path="/admin/carts-menus/:shop/menu/:slug"
+                element={<AdminMenuScreen />}
               />
               <Route path="/admin/stats" element={<AdminStatsScreen />} />
               <Route path="/admin/payments" element={<AdminPaymentsScreen />} />
