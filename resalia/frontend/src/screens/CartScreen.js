@@ -10,7 +10,12 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, cart: action.payload, loading: false };
+      return {
+        ...state,
+        cart: action.payload.cart,
+        currency: action.payload.currency,
+        loading: false,
+      };
     case 'FETCH_FAIL':
       return { ...state, error: action.payload, loading: false };
     default:
@@ -22,10 +27,11 @@ export default function CartScreen() {
   const params = useParams();
   const { shop, slug } = params;
 
-  const [{ loading, error, cart }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, cart, currency }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
     cart: {},
+    currency: '€',
   });
 
   useEffect(() => {
@@ -67,7 +73,9 @@ export default function CartScreen() {
                   <i>{item.category}</i>
                 </p>
                 <p>
-                  <strong>{item.price}€</strong>
+                  <strong>
+                    {item.price} {currency}
+                  </strong>
                 </p>
               </div>
             </div>

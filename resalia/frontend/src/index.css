@@ -61,6 +61,10 @@ main {
   margin-bottom: 2rem;
 }
 
+.switchAvailability input {
+  cursor: pointer;
+}
+
 /* PROFILE SHOP IMAGE INPUT */
 
 .profile-pic {

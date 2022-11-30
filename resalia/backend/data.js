@@ -98,7 +98,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           formats: [
             {
               name: 'media ración',
@@ -152,7 +151,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -199,7 +197,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -246,7 +243,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -294,7 +290,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -342,7 +337,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -389,7 +383,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           formats: [
             {
               name: 'para 2 personas',
@@ -446,7 +439,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -500,7 +492,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: false,
@@ -547,7 +538,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -594,7 +584,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -641,7 +630,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -688,7 +676,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -736,7 +723,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -783,7 +769,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -830,7 +815,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -887,7 +871,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: false,
@@ -934,7 +917,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -981,7 +963,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1029,7 +1010,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1076,7 +1056,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1123,7 +1102,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1170,7 +1148,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1217,7 +1194,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1271,7 +1247,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           formats: [
             {
               name: 'media tortilla',
@@ -1324,7 +1299,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1371,7 +1345,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1418,7 +1391,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1465,7 +1437,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1512,7 +1483,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1559,7 +1529,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,
@@ -1606,7 +1575,6 @@ const data = {
           isVegetariano: false,
           isVegano: false,
           isFeatured: false,
-          isVisible: true,
           alergenos: {
             isGluten: true,
             isMarisco: true,

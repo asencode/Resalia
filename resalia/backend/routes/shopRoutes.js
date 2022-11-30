@@ -100,30 +100,46 @@ shopRouter.put(
 );
 
 shopRouter.get('/:shop/carts/:slug', async (req, res) => {
-  const cart = await Cart.findOne({
-    shop: req.params.shop,
-    slug: req.params.slug,
-  });
-  if (cart) {
-    res.send(cart);
-    return;
+  const shop = await Shop.findOne({ slug: req.params.shop });
+
+  if (shop) {
+    const currency = shop.currency ? shop.currency : '€';
+    const cart = await Cart.findOne({
+      shop: req.params.shop,
+      slug: req.params.slug,
+    });
+    if (cart) {
+      res.send({ cart: cart, currency: currency });
+      return;
+    } else {
+      res.status(404).send({ message: 'Cart Not Found' });
+      return;
+    }
   } else {
-    res.status(404).send({ message: 'Cart Not Found' });
+    res.status(404).send({ message: 'Shop Not Found' });
     return;
   }
 });
 
 shopRouter.get('/:shop/menus/:slug', async (req, res) => {
-  const menu = await Menu.findOne({
-    shop: req.params.shop,
-    slug: req.params.slug,
-  });
+  const shop = await Shop.findOne({ slug: req.params.shop });
 
-  if (menu) {
-    res.send(menu);
-    return;
+  if (shop) {
+    const currency = shop.currency ? shop.currency : '€';
+    const menu = await Menu.findOne({
+      shop: req.params.shop,
+      slug: req.params.slug,
+    });
+
+    if (menu) {
+      res.send({ menu: menu, currency: currency });
+      return;
+    } else {
+      res.status(404).send({ message: 'Menu Not Found' });
+      return;
+    }
   } else {
-    res.status(404).send({ message: 'Menu Not Found' });
+    res.status(404).send({ message: 'Shop Not Found' });
     return;
   }
 });

@@ -17,7 +17,6 @@ export const cartItemSchema = new mongoose.Schema(
     isVegetariano: { type: Boolean, default: false, required: true },
     isVegano: { type: Boolean, default: false, required: true },
     isFeatured: { type: Boolean, default: false, required: true },
-    isVisible: { type: Boolean, default: true, required: true },
     formats: [formatSchema],
     alergenos: allergenSchema,
     trazas: traceSchema,

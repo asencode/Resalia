@@ -47,6 +47,45 @@ cartRouter.put(
   })
 );
 
+cartRouter.put(
+  '/updateItemVisibility',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      Cart.updateOne(
+        {
+          shop: req.body.shop,
+          slug: req.body.slug,
+          'items.slug': req.body.itemSlug,
+        },
+        {
+          'items.$.isAvailable': req.body.available,
+        },
+        function (err) {
+          if (err) {
+            console.log(err.message);
+            res.status(500).send({
+              message: 'Error al actualizar la disponibilidad del plato.',
+            });
+            return;
+          } else {
+            res.status(200).send({
+              message: 'Disponibilidad del plato actualizada con éxito',
+            });
+            return;
+          }
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+      res
+        .status(500)
+        .send({ message: 'Error al actualizar la disponibilidad del plato.' });
+      return;
+    }
+  })
+);
+
 cartRouter.post(
   '/createCart',
   isAuth,
@@ -88,7 +127,6 @@ cartRouter.post(
           shop: req.body.shop,
         });
         const cart = await newCart.save();
-        console.log('carta creada', cart.items);
         const shop = await Shop.findOne({ slug: req.body.shop });
         //TODO: comprobar que si una tienda no tiene alguno de estos datos la app no pete
         //(p.ej. que esta shop solo tenga 1 carta y 0 menus).

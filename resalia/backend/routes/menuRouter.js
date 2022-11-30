@@ -47,6 +47,45 @@ menuRouter.put(
   })
 );
 
+menuRouter.put(
+  '/updateItemVisibility',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      Menu.updateOne(
+        {
+          shop: req.body.shop,
+          slug: req.body.slug,
+          'items.slug': req.body.itemSlug,
+        },
+        {
+          'items.$.isAvailable': req.body.available,
+        },
+        function (err) {
+          if (err) {
+            console.log(err.message);
+            res.status(500).send({
+              message: 'Error al actualizar la disponibilidad del plato.',
+            });
+            return;
+          } else {
+            res.status(200).send({
+              message: 'Disponibilidad del plato actualizada con éxito',
+            });
+            return;
+          }
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+      res
+        .status(500)
+        .send({ message: 'Error al actualizar la disponibilidad del plato.' });
+      return;
+    }
+  })
+);
+
 menuRouter.post(
   '/createMenu',
   isAuth,
