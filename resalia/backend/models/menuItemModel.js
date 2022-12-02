@@ -8,7 +8,11 @@ export const menuItemSchema = new mongoose.Schema(
     name: { type: String, required: true },
     slug: { type: String, required: true },
     category: { type: String, required: true },
-    image: { type: String, required: true },
+    image: {
+      type: String,
+      required: false,
+      default: 'menu-item-default.png',
+    },
     price: { type: Number, required: true },
     isAvailable: { type: Boolean, default: true, required: true },
     aditionalInfo: { type: String, required: false },

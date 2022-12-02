@@ -63,7 +63,12 @@ export default function MenuScreen() {
           {menu.items.map((item) => (
             <div className="product" key={item.slug}>
               <Link to={`/shops/${shop}/menu/${menu.slug}/${item.slug}`}>
-                <img src={item.image} alt={item.name} />
+                <img
+                  src={`http://localhost:5000/images/menus/${
+                    item.image || 'menu-item-default.png'
+                  }`}
+                  alt={item.name}
+                />
               </Link>
               <div className="productInfo">
                 <Link to={`/shops/${shop}/menu/${menu.slug}/${item.slug}`}>
